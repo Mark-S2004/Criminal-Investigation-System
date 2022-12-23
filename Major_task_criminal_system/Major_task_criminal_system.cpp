@@ -14,11 +14,46 @@ int main()
 	Crime criminals[4];
 	int id;
 	string cname;
+	string userName;                                  //initializing a string to save username
+	string userPassword;                              //initializing a string to save password
+	int loginAttempt = 0;
 	
+	label:
+	while (loginAttempt < 3)                          // while loop to exit after 3 wrong attempts
+	{
+		cout << "Please enter your user name: ";
+		cin >> userName;                                   // Enter username
+		cout << "Please enter your user password: ";
+		cin >> userPassword;                               // Enter password
+
+		if (userName == "admin" && userPassword == "omar")         //condition to compare entry
+		{
+			cout << "Welcome admin!\n";
+			break;
+		}
+		else if (userName == "officer" && userPassword == "maro")    // condition to compare entry
+		{
+			cout << "Welcome officer!\n";
+			break;
+		}
+		else
+		{
+			cout << "Invalid login attempt. Please try again.\n" << '\n';
+			loginAttempt++;
+		}
+	}
+	if (loginAttempt == 3)                                          // condition for wrong attempts
+	{
+		cout << "Too many login attempts! The program will now terminate.";
+		return 0;
+	}
+
+	cout << "Thank you for logging in.\n";
+
 	while (true) {
 		int num=0;
 		int unum = 0;
-		while (!(num > 0 && num <=6)) {
+		while (!(num > 0 && num <=7)) {
 
 			cout << "Select an operation\n";
 			cout << "1: Add crime\n";
@@ -26,12 +61,13 @@ int main()
 			cout << "3: Update a crime\n";
 			cout << "4: View a crime\n";
 			cout << "5: Search for a criminal\n";
-			cout << "6: Exit program\n";
+			cout << "6: Log out\n";
+			cout << "7:Exit program\n";
 			cin >> num;
 		}
 			int i = 0;
 			
-			if (num == 1) {
+			if (userName=="admin" && num == 1) {
 				while (true) {
 					if (criminals[i].id == 0) {
 						break;
@@ -47,7 +83,7 @@ int main()
 				
 			}
 			int k = 0;
-			if (num == 2) {
+			if (userName == "admin" && num == 2) {
 				cout << "Enter crime id \n";
 				cin >> id;
 				while (true) {
@@ -62,7 +98,7 @@ int main()
 				
 			}
 			int x = 0;
-			if (num == 3) {
+			if (userName == "admin" && num == 3) {
 				cout << "Enter crime id \n";
 				cin >> id;
 				while (true) {
@@ -89,6 +125,9 @@ int main()
 					cin >> criminals[x].crime;
 				}
 
+			}
+			if ((userName == "officer") && (num == 1 || num==2 || num==3)) {
+				cout << "Access Denied\n";
 			}
 			int j=0;
 			if (num == 4) {
@@ -126,9 +165,13 @@ int main()
 
 
 			if (num == 6) {
-				cout << "Exiting program!";
-				break;
+				cout << "Logging out\n";
+				goto label;
 		}
+			if (num == 7) {
+				cout << "Exiting program\n";
+				break;
+			}
 	}
 }
 
