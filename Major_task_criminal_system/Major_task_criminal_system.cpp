@@ -277,7 +277,7 @@ void updateCrime(Crime criminals[])
 				correct_id = false;
 				cout << "Enter a unique id and id can't be 0: ";
 				cin >> criminals[x].id;
-				for (int z = 0; z < x; x++) {
+				for (int z = 0; z < x; z++) {
 					if ((criminals[z].id == criminals[x].id) || (criminals[x].id == 0)) {
 						correct_id = true;
 						break;
