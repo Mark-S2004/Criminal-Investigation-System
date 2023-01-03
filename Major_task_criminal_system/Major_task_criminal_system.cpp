@@ -3,13 +3,15 @@
 
 #include <iostream>
 #include <iomanip>
+
 using namespace std;
+
 struct Crime {
 	string name;
-	int id=0;
+	int id = 0;
 	string crime;
 	string officer;
-	
+
 };
 
 string login();
@@ -26,16 +28,14 @@ void display_all(Crime[]);
 
 int main()
 {
-	Crime criminals[100] = {{"Marwan", 1, "vandalism", "officer1"}, {"Yehia", 2, "murder", "officer2"}, 
-							{"Habil", 3, "thief", "officer1"}, {"Omar", 4, "dealer", "officer2"}, 
-							{"Mark", 5, "fraud", "officer1"}};
-	string userName;                                  //initializing a string to save username
-	string userPassword;                              //initializing a string to save password
-	int loginAttempt = 0;
+	Crime criminals[100] = { {"Marwan", 1, "vandalism", "officer1"}, {"Yehia", 2, "murder", "officer2"},
+							{"Habil", 3, "thief", "officer1"}, {"Omar", 4, "dealer", "officer2"},                         //creating dummy variables
+							{"Mark", 5, "fraud", "officer1"} };
+	string userName;     //initializing a string to save username
 
 label:
 	userName = login();
-	if (userName == "terminate") {
+	if (userName == "terminate") {                 //for logging in and sees if user tried to login more than 3 times and if so shuts programs
 		return 0;
 	}
 
@@ -43,7 +43,7 @@ label:
 		int num = 0;
 
 		num = printOptions();
-		
+
 
 
 		if (userName == "admin" && num == 1) {
@@ -60,14 +60,16 @@ label:
 
 		if (userName == "admin" && num == 3) {
 			updateCrime(criminals);
+
 		}
 
 		if (userName == "admin" && num == 4) {
 			display_all(criminals);
 		}
 
-		if ((userName == "officer1" || userName == "officer2") && (num == 1 || num == 2 || num == 3 || num == 6)) {
+		if ((userName == "officer1" || userName == "officer2") && (num == 1 || num == 2 || num == 3 || num == 4)) {       //check if officer and tried doing admin commands
 			cout << "Access Denied\n";
+
 		}
 
 
@@ -83,23 +85,24 @@ label:
 
 
 		if (num == 7) {
-			cout << "Logging out\n";
+			cout << "Logging out\n";         //logging out and returning to the begining of program
 			goto label;
 		}
 
 
 		if (num == 8) {
-			cout << "Exiting program\n";
-			break;
+			cout << "Exiting program\n";          //exiting the program
+			return 0;
 		}
-		
+
 	}
+	
 
 }
 
 
 
-string login() 
+string login()
 {
 	int loginAttempt = 0;
 	string userName;                                  //initializing a string to save username
@@ -118,12 +121,12 @@ string login()
 			cout << "\n\nWelcome admin!\n";
 			break;
 		}
-		else if (userName == "officer1" && userPassword == "maro")    // condition to compare entry
+		else if (userName == "officer1" && userPassword == "marwan")    // condition to compare entry
 		{
 			cout << "\n\nWelcome officer1!\n";
 			break;
 		}
-		else if (userName == "officer2" && userPassword == "yehia") {
+		else if (userName == "officer2" && userPassword == "yehia") {   // condition to compare entry
 
 			cout << "\n\nWelcome officer2!\n";
 			break;
@@ -146,10 +149,10 @@ string login()
 }
 
 
-int printOptions() 
+int printOptions()
 {
 	int num = 0;
-	while (!(num > 0 && num <= 8)) {
+	while (!(num > 0 && num <= 8)) {              //number of command must be in range from 1 to 8
 
 		cout << "\n________________________________\nSelect an operation\n";
 		cout << "1: Add crime\n";
@@ -167,21 +170,23 @@ int printOptions()
 }
 void addCrime(Crime criminals[])
 {
-	int i = 0;
-	while (true) {
-		if (criminals[i].id == 0) {
+	int i = 0;                                   
+	while (true) {                                           //loop to find the first vacant place in the array to store the new criminal in and store its index in i
+		if (criminals[i].id == 0) {                     
 			break;
 		}
 		i++;
 	}
 	cout << "\nEnter name: ";
 	cin >> criminals[i].name;
-	bool correct_id = true;
 
-	while (correct_id) {
+	
+	bool correct_id = true;                              
+	while (correct_id) {                                           //loop to check if the criminal id is already assigned to another criminal or id equal 0 
+		                                                           //and if so user enters another id
 		correct_id = false;
 		cout << "Enter a unique id and id can't be 0: ";
-		cin >> criminals[i].id;
+		cin >> criminals[i].id;                                                       
 		for (int x = 0; x < i; x++) {
 			if ((criminals[x].id == criminals[i].id) || (criminals[i].id == 0)) {
 				correct_id = true;
@@ -194,64 +199,67 @@ void addCrime(Crime criminals[])
 	cin >> criminals[i].crime;
 
 
-	while (criminals[i].officer != "officer1" && criminals[i].officer != "officer2") {
+	while (criminals[i].officer != "officer1" && criminals[i].officer != "officer2") {           //loop to check if name of officer entered correctly
 
 		cout << "which officer in charge (type 'officer1' or 'officer2'):  ";
 		cin >> criminals[i].officer;
 	}
 
-	cout << "criminal was saved successfully! \n ";
+	cout << "\n\ncriminal was saved successfully! \n ";
 }
-void deleteCrime(Crime criminals[]) 
+
+
+void deleteCrime(Crime criminals[])
 {
-	int id;
+	int id;                                      //variable to store id entered by user 
 	int k = 0;
 	cout << "Enter crime id \n";
 	cin >> id;
-	}
-	while (criminals[k].id != 0) {
+
+	while (criminals[k].id != 0) {                                      //loop to find the criminal and store its index in k
 		if (criminals[k].id == id) {
 			break;
 		}
-		k++;
+	k++;
 	}
 	if (criminals[k].id == 0) {
-		cout << "\n\ncriminal was not found"
+		cout << "\n\ncriminal was not found";                                 // reached the last criminal and criminal not found
 	}
-	else
+	else                                                                       // criminal found
 	{
 
 		while (criminals[k].id != 0) {
-			criminals[k].name = criminals[k + 1].name;
+			criminals[k].name = criminals[k + 1].name;                          //loop to delete the criminal and shifts position of every criminal after him 1 place backwards
 			criminals[k].id = criminals[k + 1].id;
 			criminals[k].crime = criminals[k + 1].crime;
 			k++;
 		}
+		cout << "\n\nCrime deleted successfully! ";
 	}
-	
+
 }
 
 
-void updateCrime(Crime criminals[]) 
+void updateCrime(Crime criminals[])
 {
-	int id;
-	int unum;
+	int id;                                //variable to store id entered by user
+	int unum;                              // variable to store which field to update
 	int x = 0;
 	cout << "Enter crime id \n";
 	cin >> id;
-	while (criminals[x].id != 0) {
+	while (criminals[x].id != 0) {                                       //loop to find the criminal and store its index in x
 		if (criminals[x].id == id) {
 			break;
 		}
 		x++;
 	}
-	if (criminals[x].id == 0) {
-		cout << "\n\ncriminal was not found"
+	if (criminals[x].id == 0) {         
+		cout << "\n\ncriminal was not found";                                 // reached the last criminal and criminal not found
 	}
-	else
+	else                                                                     // criminal found
 	{
 
-		cout << "Select which field to update\n";
+		cout << "Select which field to update\n";                      
 		cout << "1:Name\n";
 		cout << "2:id\n";
 		cout << "3:crime\n";
@@ -262,9 +270,10 @@ void updateCrime(Crime criminals[])
 			cin >> criminals[x].name;
 		}
 		else if (unum == 2) {
-			bool correct_id = true;
 
-			while (correct_id) {
+			bool correct_id = true;
+			while (correct_id) {                                    //loop to check if the criminal id is already assigned to another criminal or id equal 0 
+																    //and if so user enters another id							
 				correct_id = false;
 				cout << "Enter a unique id and id can't be 0: ";
 				cin >> criminals[x].id;
@@ -288,10 +297,11 @@ void updateCrime(Crime criminals[])
 				cin >> criminals[x].officer;
 			}
 		}
+		cout << "\n\nCrime updated successfully! ";
 
 	}
 }
-void search_by_id(Crime criminals[], string userName) 
+void search_by_id(Crime criminals[], string userName)
 {
 
 	int j = 0;
@@ -323,7 +333,7 @@ void search_by_id(Crime criminals[], string userName)
 	}
 
 }
-void search_by_name(Crime criminals[], string userName) 
+void search_by_name(Crime criminals[], string userName)
 {
 
 	int z = 0;
@@ -354,10 +364,10 @@ void search_by_name(Crime criminals[], string userName)
 
 }
 
-void display_all(Crime criminals[]) 
+void display_all(Crime criminals[])
 {
 	int i = 0;
-	cout << "Name" << setw(20) << "Criminal id" << setw(20) << "crime" << setw(20) << "officer" << endl;
+	cout << "Name" << setw(20) << "Criminal id"<< setw(20) << "crime" << setw(20) << "officer" << endl;
 	while (criminals[i].id != 0) {
 		cout << i + 1 << " " << criminals[i].name << setw(20) << criminals[i].id << setw(20) << criminals[i].crime << setw(20) << criminals[i].officer << endl;
 		i++;
