@@ -1,2 +1,14 @@
 ﻿  Major_task_criminal_system.cpp
-  Major_task_criminal_system.vcxproj -> C:\Users\PCC\Source\Repos\Criminal-Investigation-System\Major_task_criminal_system\x64\Debug\Major_task_criminal_system.exe
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(212,2): error C2059: syntax error: 'while'
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(212,31): error C2143: syntax error: missing ';' before '{'
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(212,31): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(218,2): error C2059: syntax error: 'if'
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(218,28): error C2143: syntax error: missing ';' before '{'
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(218,28): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(221,2): error C2059: syntax error: 'else'
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(222,2): error C2143: syntax error: missing ';' before '{'
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(222,2): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(232,1): error C2059: syntax error: '}'
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(232,1): error C2143: syntax error: missing ';' before '}'
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(236,1): error C2143: syntax error: missing ';' before '{'
+C:\Users\Marwan Nour\source\repos\Criminal-Investigation-System\Major_task_criminal_system\Major_task_criminal_system.cpp(236,1): error C2447: '{': missing function header (old-style formal list?)
